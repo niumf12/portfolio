@@ -1012,39 +1012,104 @@
             color: #0099cc;
         }
 
-        /* Navigation Controls */
-        .nav-button {
+        /* Navigation Zones (Ambient) */
+        .nav-zone {
             position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #0099cc 0%, #0077a3 100%);
-            color: #1a1a1a;
-            border: none;
-            border-radius: 50%;
+            top: 0;
+            width: 15vw;
+            height: 100vh;
+            z-index: 90;
             cursor: pointer;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            z-index: 100;
-            box-shadow: 0 10px 30px rgba(0, 153, 204, 0.3), 0 5px 15px rgba(0, 0, 0, 0.4);
+            transition: all 0.6s ease;
+            background: transparent;
+        }
+
+        .prev-zone {
+            left: 0;
+        }
+
+        .next-zone {
+            right: 0;
+        }
+
+        /* Hover Effect: Cosmic Flow Animation */
+        /* Hover Effect: Neon Icon Reveal */
+        .nav-zone {
+            background: transparent;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .nav-button:hover {
-            transform: translateY(-50%) scale(1.15);
-            box-shadow: 0 15px 40px rgba(0, 200, 255, 0.5), 0 8px 20px rgba(0, 0, 0, 0.5);
-            background: linear-gradient(135deg, #00AAFF 0%, #0088FF 100%);
+        /* The Ambient Light Bleed (Subtle & Integrated with Mask) */
+        .nav-zone::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            transition: opacity 0.8s ease;
+            /* Even slower fade for subtlety */
+            opacity: 0;
+            z-index: -1;
+            filter: blur(60px);
+            /* Maximum softness */
+            mix-blend-mode: screen;
+            /* Vertical Mask: Feathers the light at top and bottom */
+            mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
         }
 
-        .prev {
-            left: 30px;
+        .prev-zone::before {
+            left: 0;
+            /* Pale Blue with smooth edge fade */
+            background: linear-gradient(to right, rgba(60, 130, 255, 0.15), rgba(60, 130, 255, 0.05) 60%, transparent 100%);
         }
 
-        .next {
-            right: 30px;
+        .next-zone::before {
+            right: 0;
+            /* Pale Blue with smooth edge fade */
+            background: linear-gradient(to left, rgba(60, 130, 255, 0.15), rgba(60, 130, 255, 0.05) 60%, transparent 100%);
+        }
+
+        .nav-zone:hover::before {
+            opacity: 1;
+        }
+
+        /* The Icon (FontAwesome) */
+        .nav-zone::after {
+            display: inline-block;
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.85);
+            /* Slightly muted white */
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+            /* Extremely smooth drift */
+            margin-top: -20px;
+            transform: scale(0.9);
+        }
+
+        .prev-zone::after {
+            content: '\f053';
+            transform: translateX(-50px) scale(0.9);
+        }
+
+        .next-zone::after {
+            content: '\f054';
+            transform: translateX(50px) scale(0.9);
+        }
+
+        /* Hover: Slide In & Diffuse Glow */
+        .nav-zone:hover::after {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            /* Ambient, integrated glow */
+            text-shadow:
+                0 0 20px rgba(0, 140, 255, 0.8),
+                0 0 60px rgba(0, 100, 255, 0.4);
         }
 
         /* Slide Indicators */
@@ -1923,9 +1988,9 @@
         </div>
     </div>
 
-    <!-- Navigation Controls -->
-    <button class="nav-button prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-    <button class="nav-button next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+    <!-- Navigation Zones (Ambient) -->
+    <div class="nav-zone prev-zone" onclick="changeSlide(-1)"></div>
+    <div class="nav-zone next-zone" onclick="changeSlide(1)"></div>
 
     <!-- Slide Indicators -->
     <div class="slide-indicators">
@@ -1964,16 +2029,6 @@
             currentSlide = n;
             showSlide(currentSlide);
         }
-
-
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') changeSlide(-1);
-            if (e.key === 'ArrowRight') changeSlide(1);
-        });
-
-
 
         // Initialize
         showSlide(0);
