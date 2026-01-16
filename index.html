@@ -32,12 +32,20 @@
             box-sizing: border-box;
         }
 
+        html {
+            background-color: #1a1a1a;
+            /* Fix for color mismatch at bottom */
+        }
+
         body {
             font-family: 'Poppins', 'Inter', sans-serif;
             background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+            background-attachment: fixed;
             color: #e0e0e0;
-            overflow: hidden;
+            overflow-x: hidden;
             height: 100vh;
+            margin: 0;
+            /* Ensure no default margin causes scroll */
             user-select: none;
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -146,6 +154,8 @@
             height: 100vh;
             position: relative;
             overflow: hidden;
+            /* Keep hidden to manage slide transitions, but ensure x is restricted */
+            overflow-x: hidden;
         }
 
         .slide {
@@ -159,10 +169,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow-y: auto;
-            padding: 40px 0;
-            -ms-overflow-style: none;
-            overflow-y: auto;
+            overflow: hidden;
+            /* Default: no scrolling */
             padding: 40px 0;
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -251,6 +259,33 @@
         .slide.active {
             opacity: 1;
             z-index: 10;
+        }
+
+        /* Allow scrolling ONLY on the achievements slide */
+        .slide-achievements {
+            overflow-y: auto !important;
+            display: block !important;
+            /* switch to block to allow normal flow for sticky */
+        }
+
+        .slide-achievements .content {
+            /* padding-top: 80px; removed sticky header spacing */
+            max-width: 1000px;
+            margin: 0 auto;
+            min-height: 100vh;
+            /* Ensure it fills height so scroll works if needed */
+        }
+
+        .slide-achievements h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #0099cc;
+            margin-bottom: 50px;
+            text-align: center;
+            animation: slideInLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            letter-spacing: -1.5px;
+            font-stretch: condensed;
         }
 
         /* Slide 1 - Hero */
@@ -690,111 +725,174 @@
             font-stretch: condensed;
         }
 
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .achievement-card {
-            background: rgba(42, 42, 42, 0.4);
-            padding: 35px;
-            border-radius: 18px;
-            border-left: 5px solid #0099cc;
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), border-left-color 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 8px 30px rgba(0, 153, 204, 0.1), 0 5px 15px rgba(0, 0, 0, 0.4);
+        /* The actual vertical line */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #0099cc;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            box-shadow: 0 0 15px rgba(0, 153, 204, 0.6);
+        }
+
+        /* Container around content */
+        .timeline-container {
+            padding: 10px 40px;
             position: relative;
-            overflow: hidden;
-            z-index: 10;
-            will-change: transform, opacity;
+            background-color: inherit;
+            width: 50%;
             animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
         }
 
-        .achievement-card:nth-child(1) {
+        .timeline-container:nth-child(1) {
             animation-delay: 0.1s;
         }
 
-        .achievement-card:nth-child(2) {
+        .timeline-container:nth-child(2) {
             animation-delay: 0.2s;
         }
 
-        .achievement-card:nth-child(3) {
+        .timeline-container:nth-child(3) {
             animation-delay: 0.3s;
         }
 
-        .achievement-card:nth-child(4) {
+        .timeline-container:nth-child(4) {
             animation-delay: 0.4s;
         }
 
-        .achievement-card:nth-child(5) {
+        .timeline-container:nth-child(5) {
             animation-delay: 0.5s;
         }
 
-        .achievement-card:nth-child(6) {
+        .timeline-container:nth-child(6) {
             animation-delay: 0.6s;
         }
 
-        .achievement-card::before {
+        /* The circles on the central line */
+        .timeline-container::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .achievement-card:hover {
-            transform: translateY(-16px) translateX(8px);
-            box-shadow: 0 20px 50px rgba(0, 200, 255, 0.35), 0 10px 25px rgba(0, 0, 0, 0.5);
-            border-left-color: #00AAFF;
-            background: rgba(58, 58, 74, 0.6);
-        }
-
-        .achievement-card:hover::before {
-            left: 100%;
-        }
-
-        .achievement-year {
-            background: linear-gradient(135deg, #0099cc 0%, #0077a3 100%);
-            color: #1a1a1a;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 800;
-            display: inline-block;
-            margin-bottom: 12px;
-            position: relative;
-            z-index: 1;
-            box-shadow: 0 4px 15px rgba(0, 153, 204, 0.25), 0 2px 8px rgba(0, 0, 0, 0.4);
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: #1a1a1a;
+            border: 3px solid #0099cc;
+            top: 25px;
+            border-radius: 50%;
+            z-index: 10;
+            box-shadow: 0 0 10px rgba(0, 153, 204, 0.5);
             transition: all 0.3s ease;
         }
 
-        .achievement-card:hover .achievement-year {
-            background: linear-gradient(135deg, #00AAFF 0%, #0088FF 100%);
-            box-shadow: 0 6px 20px rgba(0, 200, 255, 0.4);
+        .timeline-container:hover::after {
+            background-color: #0099cc;
+            transform: scale(1.3);
+            box-shadow: 0 0 20px rgba(0, 153, 204, 0.8);
         }
 
-        .achievement-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #0099cc;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
-            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
-            letter-spacing: -0.5px;
-            font-stretch: condensed;
+        /* Place the container to the left */
+        .left {
+            left: 0;
         }
 
-        .achievement-desc {
-            color: #0099cc;
-            font-size: 0.9rem;
-            position: relative;
+        /* Place the container to the right */
+        .right {
+            left: 50%;
+        }
+
+        /* Add arrows to the left container (pointing right) */
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 28px;
+            width: 0;
             z-index: 1;
-            font-weight: 500;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+            right: 30px;
+            border: medium solid rgba(42, 42, 42, 0.4);
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent rgba(42, 42, 42, 0.4);
+        }
+
+        /* Add arrows to the right container (pointing left) */
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 28px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid rgba(42, 42, 42, 0.4);
+            border-width: 10px 10px 10px 0;
+            border-color: transparent rgba(42, 42, 42, 0.4) transparent transparent;
+        }
+
+        /* Fix the circle for containers on the right side */
+        .right::after {
+            left: -10px;
+        }
+
+        /* The actual content */
+        .timeline-content {
+            padding: 20px 30px;
+            background: rgba(42, 42, 42, 0.4);
+            position: relative;
+            border-radius: 12px;
+            border: 2px solid #0099cc;
+            box-shadow: 0 8px 30px rgba(0, 153, 204, 0.1), 0 5px 15px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .timeline-container:hover .timeline-content {
+            transform: translateY(-5px);
+            background: rgba(58, 58, 74, 0.6);
+            border-color: #00AAFF;
+            box-shadow: 0 15px 40px rgba(0, 200, 255, 0.3), 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Media queries - Responsive timeline */
+        @media screen and (max-width: 768px) {
+
+            /* Place the timelime to the left */
+            .timeline::after {
+                left: 31px;
+            }
+
+            /* Full-width containers */
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            /* Make sure that all arrows are pointing leftwards */
+            .timeline-container::before {
+                left: 60px;
+                border: medium solid rgba(42, 42, 42, 0.4);
+                border-width: 10px 10px 10px 0;
+                border-color: transparent rgba(42, 42, 42, 0.4) transparent transparent;
+            }
+
+            /* Make sure all circles are at the same spot */
+            .left::after,
+            .right::after {
+                left: 21px;
+            }
+
+            /* Make all right containers behave like the left ones */
+            .right {
+                left: 0%;
+            }
         }
 
         /* Slide 6 - Contact */
@@ -1746,36 +1844,54 @@
         <div class="slide slide-achievements">
             <div class="content">
                 <h2>Honors & Awards</h2>
-                <div class="achievements-grid">
-                    <div class="achievement-card">
-                        <span class="achievement-year">2024</span>
-                        <div class="achievement-title">Second Prize - ICPC Asia Hanoi</div>
-                        <div class="achievement-desc">ICPC Asia Hanoi Regional (High School)</div>
+                <div class="timeline">
+                    <!-- Item 1 -->
+                    <div class="timeline-container left">
+                        <div class="timeline-content">
+                            <span class="achievement-year">2025</span>
+                            <div class="achievement-title">Gold Medal - 30/4 Olympiad</div>
+                            <div class="achievement-desc">Grade 11 in Ho Chi Minh City</div>
+                        </div>
                     </div>
-                    <div class="achievement-card">
-                        <span class="achievement-year">2025</span>
-                        <div class="achievement-title">Gold Medal - 30/4 Olympiad</div>
-                        <div class="achievement-desc">Grade 11 in Ho Chi Minh City</div>
+                    <!-- Item 2 -->
+                    <div class="timeline-container right">
+                        <div class="timeline-content">
+                            <span class="achievement-year">2024</span>
+                            <div class="achievement-title">Second Prize - ICPC Asia Hanoi</div>
+                            <div class="achievement-desc">ICPC Asia Hanoi Regional (High School)</div>
+                        </div>
                     </div>
-                    <div class="achievement-card">
-                        <span class="achievement-year">2024</span>
-                        <div class="achievement-title">Gold Medal - 30/4 Olympiad</div>
-                        <div class="achievement-desc">Grade 10 in Ba Ria - Vung Tau</div>
+                    <!-- Item 3 -->
+                    <div class="timeline-container left">
+                        <div class="timeline-content">
+                            <span class="achievement-year">2024</span>
+                            <div class="achievement-title">Gold Medal - 30/4 Olympiad</div>
+                            <div class="achievement-desc">Grade 10 in Ba Ria - Vung Tau</div>
+                        </div>
                     </div>
-                    <div class="achievement-card">
-                        <span class="achievement-year">2024</span>
-                        <div class="achievement-title">First Prize - Summer Camp</div>
-                        <div class="achievement-desc">Informatics Summer Camp in Ninh Thuan</div>
+                    <!-- Item 4 -->
+                    <div class="timeline-container right">
+                        <div class="timeline-content">
+                            <span class="achievement-year">2024</span>
+                            <div class="achievement-title">First Prize - Summer Camp</div>
+                            <div class="achievement-desc">Informatics Summer Camp in Ninh Thuan</div>
+                        </div>
                     </div>
-                    <div class="achievement-card">
-                        <span class="achievement-year">2024</span>
-                        <div class="achievement-title">Top 5 - HCMC Selection</div>
-                        <div class="achievement-desc">National Gifted Student Team Selection</div>
+                    <!-- Item 5 -->
+                    <div class="timeline-container left">
+                        <div class="timeline-content">
+                            <span class="achievement-year">2024</span>
+                            <div class="achievement-title">Top 5 - HCMC Selection</div>
+                            <div class="achievement-desc">National Gifted Student Team Selection</div>
+                        </div>
                     </div>
-                    <div class="achievement-card">
-                        <span class="achievement-year">2023</span>
-                        <div class="achievement-title">Top 1 - District Competition</div>
-                        <div class="achievement-desc">Go Vap District Gifted Student Team</div>
+                    <!-- Item 6 -->
+                    <div class="timeline-container right">
+                        <div class="timeline-content">
+                            <span class="achievement-year">2023</span>
+                            <div class="achievement-title">Top 1 - District Competition</div>
+                            <div class="achievement-desc">Go Vap District Gifted Student Team</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1828,11 +1944,6 @@
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.dot');
-        const progressBar = document.querySelector('.progress-bar');
-        let autoSlideInterval;
-
-        // Auto slide every 8 seconds
-        const AUTO_SLIDE_TIME = 8000;
 
         function showSlide(n) {
             slides.forEach(slide => slide.classList.remove('active'));
@@ -1840,16 +1951,6 @@
 
             slides[n].classList.add('active');
             dots[n].classList.add('active');
-
-            // Reset and start progress bar
-            progressBar.style.animation = 'none';
-            setTimeout(() => {
-                progressBar.style.animation = `slideShow ${AUTO_SLIDE_TIME / 1000}s linear forwards`;
-            }, 10);
-
-            // Reset auto-slide timer   
-            clearInterval(autoSlideInterval);
-            startAutoSlide();
         }
 
         function changeSlide(direction) {
@@ -1864,11 +1965,7 @@
             showSlide(currentSlide);
         }
 
-        function startAutoSlide() {
-            autoSlideInterval = setInterval(() => {
-                changeSlide(1);
-            }, AUTO_SLIDE_TIME);
-        }
+
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
@@ -1876,11 +1973,7 @@
             if (e.key === 'ArrowRight') changeSlide(1);
         });
 
-        // Mouse wheel navigation
-        document.addEventListener('wheel', (e) => {
-            if (e.deltaY > 0) changeSlide(1);
-            else changeSlide(-1);
-        }, { passive: true });
+
 
         // Initialize
         showSlide(0);
