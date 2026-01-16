@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nium Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Inter', sans-serif;
+            background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+            color: #e0e0e0;
+            overflow: hidden;
+            height: 100vh;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes slideShow {
+            0% {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            10% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            85% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+        }
+
+        @keyframes dotPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.6;
+            }
+        }
+
+        /* Slide Container */
+        .slides-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+            padding: 40px 0;
+            -ms-overflow-style: none;
+            overflow-y: auto;
+            padding: 40px 0;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .slide::-webkit-scrollbar {
+            display: none;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        #stars-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 4s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.2;
+                transform: scale(0.8);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1.2);
+            }
+        }
+
+        .floating-astronaut {
+            position: absolute;
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.9);
+            top: 15%;
+            right: 15%;
+            animation: floatSpace 8s ease-in-out infinite;
+            z-index: 5;
+            text-shadow: 0 0 20px rgba(0, 153, 255, 0.6);
+        }
+
+        @keyframes floatSpace {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(15deg);
+            }
+        }
+
+        /* Slide Backgrounds - set to transparent to show particles */
+        .slide-hero,
+        .slide-stats,
+        .slide-skills,
+        .slide-about,
+        .slide-achievements,
+        .slide-contact {
+            background: transparent !important;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        /* Slide 1 - Hero */
+        .slide-hero {
+            position: relative;
+        }
+
+        .slide-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .slide-hero .content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            animation: fadeInDown 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-width: 800px;
+        }
+
+        .hero-avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 40px;
+            border: 5px solid #0099cc;
+            box-shadow: 0 0 35px rgba(0, 153, 204, 0.8), 0 0 70px rgba(0, 153, 204, 0.4), 0 0 0 4px rgba(0, 153, 204, 0.1);
+            object-fit: cover;
+            animation: scaleIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), float 6s ease-in-out 2s infinite;
+        }
+
+        .slide-hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #0099cc;
+            margin-bottom: 15px;
+            animation: fadeInDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+            letter-spacing: -2px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            font-stretch: condensed;
+        }
+
+        .slide-hero .subtitle {
+            font-size: 1.5rem;
+            color: #0099cc;
+            font-weight: 700;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+        }
+
+        .social-btn {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: rgba(42, 42, 42, 0.4);
+            border: 2px solid #0099cc;
+            color: #0099cc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 10px 30px rgba(0, 153, 204, 0.1), 0 5px 15px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-12px) scale(1.15) rotate(5deg);
+            box-shadow: 0 25px 50px rgba(0, 200, 255, 0.3), 0 8px 20px rgba(0, 0, 0, 0.5);
+            background: rgba(0, 153, 204, 0.2);
+            color: #ffffff;
+            border-color: #00AAFF;
+        }
+
+        .social-btn i {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Slide 2 - Stats */
+        .slide-stats {
+            background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+        }
+
+        .slide-stats::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 60% 40%, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .slide-stats .content {
+            animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-width: 1000px;
+            width: 90%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .slide-stats h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #0099cc;
+            margin-bottom: 70px;
+            text-align: center;
+            animation: slideInLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            letter-spacing: -1.5px;
+            font-stretch: condensed;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 35px;
+        }
+
+        .stat-item {
+            background: rgba(42, 42, 42, 0.4);
+            padding: 50px 30px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 153, 204, 0.15), 0 8px 20px rgba(0, 0, 0, 0.5);
+            border: 2px solid #0099cc;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+            will-change: transform, opacity;
+            animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        .stat-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .stat-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .stat-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .stat-item:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+            transition: all 0.6s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 25px 60px rgba(0, 200, 255, 0.4), 0 10px 25px rgba(0, 0, 0, 0.6);
+            border-color: #00AAFF;
+            background: rgba(58, 58, 74, 0.6);
+        }
+
+        .stat-item:hover::before {
+            transform: scale(1.2);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #0099cc;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            letter-spacing: -1px;
+            font-stretch: condensed;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #0099cc;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Slide 3 - Skills */
+        .slide-skills {
+            background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+        }
+
+        .slide-skills::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 40% 60%, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+            animation: float 22s ease-in-out infinite;
+        }
+
+        .slide-skills .content {
+            animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-width: 900px;
+            width: 90%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .slide-skills h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #0099cc;
+            margin-bottom: 70px;
+            text-align: center;
+            animation: slideInLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            letter-spacing: -1.5px;
+            font-stretch: condensed;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: rgba(42, 42, 42, 0.4);
+            padding: 50px 35px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 8px 30px rgba(0, 153, 204, 0.1), 0 5px 15px rgba(0, 0, 0, 0.4);
+            border: 2px solid #0099cc;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+            will-change: transform, opacity;
+            animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+        }
+
+        .skill-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .skill-card:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .skill-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .skill-card:nth-child(4) {
+            animation-delay: 0.25s;
+        }
+
+        .skill-card:nth-child(5) {
+            animation-delay: 0.3s;
+        }
+
+        .skill-card:nth-child(6) {
+            animation-delay: 0.35s;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-18px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(0, 200, 255, 0.3), 0 10px 25px rgba(0, 0, 0, 0.5);
+            border-color: #00AAFF;
+            background: rgba(58, 58, 74, 0.6);
+        }
+
+        .skill-card:hover::before {
+            left: 100%;
+        }
+
+        .skill-icon {
+            font-size: 3.5rem;
+            margin-bottom: 12px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-card:hover .skill-icon {
+            transform: scale(1.3) rotate(10deg);
+            filter: drop-shadow(0 8px 16px rgba(0, 153, 204, 0.3)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+        }
+
+        .skill-name {
+            font-weight: 800;
+            color: #0099cc;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Slide 4 - About */
+        .slide-about {
+            background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+        }
+
+        .slide-about::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 70% 30%, rgba(59, 130, 246, 0.11) 0%, transparent 70%);
+            animation: float 25s ease-in-out infinite;
+        }
+
+        .slide-about .content {
+            animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-width: 900px;
+            width: 90%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .slide-about h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #0099cc;
+            margin-bottom: 50px;
+            text-align: center;
+            animation: slideInLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            letter-spacing: -1.5px;
+            font-stretch: condensed;
+        }
+
+        .about-text {
+            background: rgba(0, 153, 204, 0.1);
+            padding: 45px;
+            border-radius: 18px;
+            border: 2px solid #0099cc;
+            line-height: 1.9;
+            font-size: 1.1rem;
+            color: #0099cc;
+            animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+            box-shadow: 0 8px 30px rgba(0, 153, 204, 0.1), 0 5px 15px rgba(0, 0, 0, 0.4);
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Slide 5 - Achievements */
+        .slide-achievements {
+            background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+        }
+
+        .slide-achievements::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 70%, rgba(59, 130, 246, 0.09) 0%, transparent 70%);
+            animation: float 23s ease-in-out infinite;
+        }
+
+        .slide-achievements .content {
+            animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-width: 1000px;
+            width: 90%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .slide-achievements h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #0099cc;
+            margin-bottom: 50px;
+            text-align: center;
+            animation: slideInLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            letter-spacing: -1.5px;
+            font-stretch: condensed;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .achievement-card {
+            background: rgba(42, 42, 42, 0.4);
+            padding: 35px;
+            border-radius: 18px;
+            border-left: 5px solid #0099cc;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), border-left-color 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 8px 30px rgba(0, 153, 204, 0.1), 0 5px 15px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+            will-change: transform, opacity;
+            animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        .achievement-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .achievement-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .achievement-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .achievement-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .achievement-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .achievement-card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-16px) translateX(8px);
+            box-shadow: 0 20px 50px rgba(0, 200, 255, 0.35), 0 10px 25px rgba(0, 0, 0, 0.5);
+            border-left-color: #00AAFF;
+            background: rgba(58, 58, 74, 0.6);
+        }
+
+        .achievement-card:hover::before {
+            left: 100%;
+        }
+
+        .achievement-year {
+            background: linear-gradient(135deg, #0099cc 0%, #0077a3 100%);
+            color: #1a1a1a;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            display: inline-block;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(0, 153, 204, 0.25), 0 2px 8px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .achievement-card:hover .achievement-year {
+            background: linear-gradient(135deg, #00AAFF 0%, #0088FF 100%);
+            box-shadow: 0 6px 20px rgba(0, 200, 255, 0.4);
+        }
+
+        .achievement-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0099cc;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+            letter-spacing: -0.5px;
+            font-stretch: condensed;
+        }
+
+        .achievement-desc {
+            color: #0099cc;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+            font-weight: 500;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Slide 6 - Contact */
+        .slide-contact {
+            background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+        }
+
+        .slide-contact::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 40%, rgba(59, 130, 246, 0.13) 0%, transparent 70%);
+            animation: float 24s ease-in-out infinite;
+        }
+
+        .slide-contact .content {
+            animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-width: 900px;
+            width: 90%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .slide-contact h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #0099cc;
+            margin-bottom: 50px;
+            text-align: center;
+            animation: slideInLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            letter-spacing: -1.5px;
+            font-stretch: condensed;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-item {
+            text-align: center;
+            color: #0099cc;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            background: rgba(42, 42, 42, 0.3);
+            padding: 45px 30px;
+            border-radius: 18px;
+            border: 2px solid #0099cc;
+            box-shadow: 0 8px 30px rgba(0, 153, 204, 0.1), 0 5px 15px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .contact-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .contact-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .contact-item:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+
+
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 200, 255, 0.3), 0 10px 25px rgba(0, 0, 0, 0.5);
+            border-color: #00AAFF;
+            background: rgba(58, 58, 74, 0.6);
+        }
+
+        .contact-item:hover::before {
+            left: 100%;
+        }
+
+        .contact-label {
+            font-size: 1rem;
+            opacity: 1;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            color: #00AAFF;
+        }
+
+        .contact-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            word-break: break-word;
+            line-height: 1.5;
+            color: #0099cc;
+        }
+
+        /* Navigation Controls */
+        .nav-button {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0099cc 0%, #0077a3 100%);
+            color: #1a1a1a;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0, 153, 204, 0.3), 0 5px 15px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 15px 40px rgba(0, 200, 255, 0.5), 0 8px 20px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, #00AAFF 0%, #0088FF 100%);
+        }
+
+        .prev {
+            left: 30px;
+        }
+
+        .next {
+            right: 30px;
+        }
+
+        /* Slide Indicators */
+        .slide-indicators {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 2px solid transparent;
+        }
+
+        .dot.active {
+            background: #0099cc;
+            width: 35px;
+            border-radius: 10px;
+            animation: dotPulse 1.5s ease infinite;
+            box-shadow: 0 0 15px rgba(0, 153, 204, 0.5);
+        }
+
+        .dot:hover {
+            background: rgba(0, 153, 204, 0.7);
+            transform: scale(1.2);
+            box-shadow: 0 0 10px rgba(0, 153, 204, 0.4);
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0099cc 0%, #0077a3 100%);
+            z-index: 101;
+            animation: none;
+            box-shadow: 0 2px 10px rgba(0, 153, 204, 0.3);
+        }
+
+        /* Responsive Design - Extra Large Screens (1440px+) */
+        @media (min-width: 1440px) {
+            .slide-hero h1 {
+                font-size: 5rem;
+            }
+
+            .slide-hero .subtitle {
+                font-size: 1.8rem;
+            }
+
+            .hero-avatar {
+                width: 250px;
+                height: 250px;
+            }
+
+            .social-btn {
+                width: 75px;
+                height: 75px;
+                font-size: 1.8rem;
+            }
+
+            .slide-stats h2,
+            .slide-skills h2,
+            .slide-about h2,
+            .slide-achievements h2,
+            .slide-contact h2 {
+                font-size: 3.5rem;
+            }
+
+            .stat-number {
+                font-size: 4rem;
+            }
+
+            .stat-label {
+                font-size: 1.3rem;
+            }
+
+            .skill-card {
+                padding: 50px 30px;
+            }
+
+            .skill-icon {
+                font-size: 4rem;
+            }
+
+            .skill-name {
+                font-size: 1.3rem;
+            }
+
+            .achievement-card {
+                padding: 45px;
+            }
+
+            .achievement-title {
+                font-size: 1.4rem;
+            }
+
+            .contact-item {
+                gap: 15px;
+            }
+
+            .contact-label {
+                font-size: 1.1rem;
+            }
+
+            .contact-value {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Responsive Design - Large Screens (1024px - 1439px) */
+        @media (max-width: 1439px) and (min-width: 1024px) {
+            .slide-hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .slide-hero .subtitle {
+                font-size: 1.4rem;
+            }
+
+            .hero-avatar {
+                width: 180px;
+                height: 180px;
+            }
+
+            .social-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 1.3rem;
+            }
+
+            .slide-stats h2,
+            .slide-skills h2,
+            .slide-about h2,
+            .slide-achievements h2,
+            .slide-contact h2 {
+                font-size: 2.8rem;
+            }
+
+            .stat-item {
+                padding: 40px 25px;
+            }
+
+            .stat-number {
+                font-size: 3rem;
+            }
+
+            .skill-card {
+                padding: 35px 20px;
+            }
+
+            .skill-icon {
+                font-size: 3rem;
+            }
+
+            .achievement-card {
+                padding: 30px;
+            }
+
+            .nav-button {
+                width: 55px;
+                height: 55px;
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Responsive Design - Tablets (769px - 1023px) */
+        @media (max-width: 1023px) and (min-width: 769px) {
+            .slide-hero h1 {
+                font-size: 3rem;
+            }
+
+            .slide-hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-avatar {
+                width: 160px;
+                height: 160px;
+                border: 4px solid #0099cc;
+            }
+
+            .social-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 1.2rem;
+                gap: 12px;
+            }
+
+            .slide-stats h2,
+            .slide-skills h2,
+            .slide-about h2,
+            .slide-achievements h2,
+            .slide-contact h2 {
+                font-size: 2.3rem;
+                margin-bottom: 50px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .stat-item {
+                padding: 35px 20px;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .stat-label {
+                font-size: 0.95rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+
+            .skill-card {
+                padding: 30px 20px;
+            }
+
+            .skill-icon {
+                font-size: 2.5rem;
+                margin-bottom: 10px;
+            }
+
+            .skill-name {
+                font-size: 0.95rem;
+            }
+
+            .about-text {
+                padding: 35px;
+                font-size: 1rem;
+            }
+
+            .achievements-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .achievement-card {
+                padding: 25px;
+            }
+
+            .achievement-year {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+
+            .achievement-title {
+                font-size: 1.1rem;
+            }
+
+            .achievement-desc {
+                font-size: 0.85rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .contact-value {
+                font-size: 1.2rem;
+            }
+
+            .nav-button {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .prev {
+                left: 15px;
+            }
+
+            .next {
+                right: 15px;
+            }
+
+            .slide-indicators {
+                bottom: 30px;
+                gap: 12px;
+            }
+
+            .dot {
+                width: 12px;
+                height: 12px;
+            }
+
+            .dot.active {
+                width: 32px;
+            }
+        }
+
+        /* Responsive Design - Small Tablets & Large Mobile (481px - 768px) */
+        @media (max-width: 768px) and (min-width: 481px) {
+            .slide-hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 12px;
+            }
+
+            .slide-hero .subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 35px;
+            }
+
+            .hero-avatar {
+                width: 140px;
+                height: 140px;
+                border: 4px solid #0099cc;
+                margin-bottom: 30px;
+            }
+
+            .social-links {
+                gap: 15px;
+            }
+
+            .social-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.1rem;
+            }
+
+            .slide-stats h2,
+            .slide-skills h2,
+            .slide-about h2,
+            .slide-achievements h2,
+            .slide-contact h2 {
+                font-size: 2rem;
+                margin-bottom: 45px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .stat-item {
+                padding: 30px 20px;
+            }
+
+            .stat-number {
+                font-size: 2.2rem;
+                margin-bottom: 10px;
+            }
+
+            .stat-label {
+                font-size: 0.9rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+
+            .skill-card {
+                padding: 25px 15px;
+            }
+
+            .skill-icon {
+                font-size: 2.2rem;
+                margin-bottom: 8px;
+            }
+
+            .skill-name {
+                font-size: 0.9rem;
+            }
+
+            .about-text {
+                padding: 30px;
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+
+            .about-text p {
+                margin-bottom: 15px;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .achievement-card {
+                padding: 20px;
+                border-left: 4px solid #0099cc;
+            }
+
+            .achievement-year {
+                font-size: 0.75rem;
+                padding: 5px 10px;
+                margin-bottom: 8px;
+            }
+
+            .achievement-title {
+                font-size: 1rem;
+                margin-bottom: 8px;
+            }
+
+            .achievement-desc {
+                font-size: 0.8rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .contact-label {
+                font-size: 0.85rem;
+            }
+
+            .contact-value {
+                font-size: 1rem;
+            }
+
+            .nav-button {
+                width: 48px;
+                height: 48px;
+                font-size: 1rem;
+            }
+
+            .prev {
+                left: 12px;
+            }
+
+            .next {
+                right: 12px;
+            }
+
+            .slide-indicators {
+                bottom: 25px;
+                gap: 10px;
+            }
+
+            .dot {
+                width: 11px;
+                height: 11px;
+            }
+
+            .dot.active {
+                width: 28px;
+            }
+        }
+
+        /* Responsive Design - Mobile (320px - 480px) */
+        @media (max-width: 480px) {
+            .slide {
+                padding: 20px;
+            }
+
+            .slide .content {
+                width: 95% !important;
+            }
+
+            .slide-hero h1 {
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+
+            .slide-hero .subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 25px;
+            }
+
+            .hero-avatar {
+                width: 120px;
+                height: 120px;
+                border: 3px solid #0099cc;
+                margin-bottom: 25px;
+            }
+
+            .social-links {
+                gap: 12px;
+            }
+
+            .social-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+
+            .slide-stats h2,
+            .slide-skills h2,
+            .slide-about h2,
+            .slide-achievements h2,
+            .slide-contact h2 {
+                font-size: 1.6rem;
+                margin-bottom: 35px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .stat-item {
+                padding: 25px 15px;
+                border-radius: 12px;
+                border: 1.5px solid #0099cc;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+                margin-bottom: 8px;
+            }
+
+            .stat-label {
+                font-size: 0.8rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .skill-card {
+                padding: 20px 12px;
+                border-radius: 12px;
+                border: 1.5px solid #0099cc;
+            }
+
+            .skill-icon {
+                font-size: 1.8rem;
+                margin-bottom: 6px;
+            }
+
+            .skill-name {
+                font-size: 0.8rem;
+            }
+
+            .about-text {
+                padding: 20px;
+                font-size: 0.9rem;
+                line-height: 1.6;
+                border-radius: 12px;
+                border: 1.5px solid #0099cc;
+            }
+
+            .about-text p {
+                margin-bottom: 12px;
+            }
+
+            .about-text p:last-child {
+                margin-bottom: 0;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .achievement-card {
+                padding: 15px;
+                border-left: 3px solid #0099cc;
+                border-radius: 10px;
+            }
+
+            .achievement-year {
+                font-size: 0.7rem;
+                padding: 4px 8px;
+                margin-bottom: 6px;
+            }
+
+            .achievement-title {
+                font-size: 0.9rem;
+                margin-bottom: 6px;
+            }
+
+            .achievement-desc {
+                font-size: 0.75rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .contact-label {
+                font-size: 0.8rem;
+                letter-spacing: 1px;
+            }
+
+            .contact-value {
+                font-size: 0.9rem;
+                word-break: break-word;
+            }
+
+            .nav-button {
+                width: 45px;
+                height: 45px;
+                font-size: 0.9rem;
+            }
+
+            .prev {
+                left: 10px;
+            }
+
+            .next {
+                right: 10px;
+            }
+
+            .slide-indicators {
+                bottom: 20px;
+                gap: 8px;
+            }
+
+            .dot {
+                width: 10px;
+                height: 10px;
+            }
+
+            .dot.active {
+                width: 25px;
+            }
+
+            .progress-bar {
+                height: 3px;
+            }
+        }
+
+        /* Ultra Small Mobile (320px - 360px) */
+        @media (max-width: 360px) {
+            .slide-hero h1 {
+                font-size: 1.8rem;
+                letter-spacing: -0.5px;
+            }
+
+            .slide-hero .subtitle {
+                font-size: 0.85rem;
+            }
+
+            .hero-avatar {
+                width: 100px;
+                height: 100px;
+            }
+
+            .social-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 0.9rem;
+            }
+
+            .slide-stats h2,
+            .slide-skills h2,
+            .slide-about h2,
+            .slide-achievements h2,
+            .slide-contact h2 {
+                font-size: 1.4rem;
+                margin-bottom: 30px;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
+            }
+
+            .skill-icon {
+                font-size: 1.5rem;
+            }
+
+            .contact-value {
+                font-size: 0.8rem;
+            }
+
+            .nav-button {
+                width: 40px;
+                height: 40px;
+                font-size: 0.8rem;
+            }
+
+            .dot.active {
+                width: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="stars-container"></div>
+    <div id="particles-js"></div>
+
+    <div class="slides-container">
+        <!-- Slide 1: Hero -->
+        <div class="slide slide-hero active">
+            <div class="content">
+                <img src="redgirl.jpg" alt="Profile" class="hero-avatar">
+                <h1>Anh Tran</h1>
+                <p class="subtitle">Competitive Programmer | Informatics Specialist</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/ducanh.nium.811" class="social-btn" target="_blank"
+                        title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://github.com/niumf12" class="social-btn" target="_blank" title="GitHub"><i
+                            class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/tranvanducanh" class="social-btn" target="_blank"
+                        title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://discord.com/users/nium0811" class="social-btn" target="_blank" title="Discord"><i
+                            class="fab fa-discord"></i></a>
+                    <a href="https://codeforces.com/profile/Nium2026" class="social-btn" target="_blank"
+                        title="Codeforces"><i class="fas fa-code"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Stats -->
+        <div class="slide slide-stats">
+            <div class="content">
+                <h2>Academic Achievements</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">1520</div>
+                        <div class="stat-label">SAT Score</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">7.0</div>
+                        <div class="stat-label">IELTS Score</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">9.2</div>
+                        <div class="stat-label">GPA Class 11 & 12</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">8.7</div>
+                        <div class="stat-label">GPA Class 10</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Skills -->
+        <div class="slide slide-skills">
+            <div class="content">
+                <h2>Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="devicon-cplusplus-plain" style="color: #00599C;"></i></div>
+                        <div class="skill-name">C++</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fab fa-python" style="color: #FFD43B;"></i></div>
+                        <div class="skill-name">Python</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fab fa-js" style="color: #F7DF1E;"></i></div>
+                        <div class="skill-name">JavaScript</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-cogs" style="color: #FF5733;"></i></div>
+                        <div class="skill-name">Algorithms</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-database" style="color: #2ECC71;"></i></div>
+                        <div class="skill-name">Data Structures</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-globe" style="color: #61DAFB;"></i></div>
+                        <div class="skill-name">Web Dev</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: About -->
+        <div class="slide slide-about">
+            <div class="content">
+                <h2>About Me</h2>
+                <div class="about-text">
+                    <p>I am a Grade 12 student at Gia Dinh High School specializing in Informatics. With a strong
+                        passion for competitive programming, I have participated in numerous national and international
+                        programming competitions.</p>
+                    <p>My interests span Computer Science, Astronomy, and Volunteer Work. I am actively involved in
+                        academic activities and currently serve as a Brand Ambassador for Edu House Educational Center.
+                    </p>
+                    <p>With consistent academic excellence and strong standardized test performance, I am committed to
+                        pursuing excellence in competitive programming and computer science.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Achievements -->
+        <div class="slide slide-achievements">
+            <div class="content">
+                <h2>Honors & Awards</h2>
+                <div class="achievements-grid">
+                    <div class="achievement-card">
+                        <span class="achievement-year">2024</span>
+                        <div class="achievement-title">Second Prize - ICPC Asia Hanoi</div>
+                        <div class="achievement-desc">ICPC Asia Hanoi Regional (High School)</div>
+                    </div>
+                    <div class="achievement-card">
+                        <span class="achievement-year">2025</span>
+                        <div class="achievement-title">Gold Medal - 30/4 Olympiad</div>
+                        <div class="achievement-desc">Grade 11 in Ho Chi Minh City</div>
+                    </div>
+                    <div class="achievement-card">
+                        <span class="achievement-year">2024</span>
+                        <div class="achievement-title">Gold Medal - 30/4 Olympiad</div>
+                        <div class="achievement-desc">Grade 10 in Ba Ria - Vung Tau</div>
+                    </div>
+                    <div class="achievement-card">
+                        <span class="achievement-year">2024</span>
+                        <div class="achievement-title">First Prize - Summer Camp</div>
+                        <div class="achievement-desc">Informatics Summer Camp in Ninh Thuan</div>
+                    </div>
+                    <div class="achievement-card">
+                        <span class="achievement-year">2024</span>
+                        <div class="achievement-title">Top 5 - HCMC Selection</div>
+                        <div class="achievement-desc">National Gifted Student Team Selection</div>
+                    </div>
+                    <div class="achievement-card">
+                        <span class="achievement-year">2023</span>
+                        <div class="achievement-title">Top 1 - District Competition</div>
+                        <div class="achievement-desc">Go Vap District Gifted Student Team</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Contact -->
+        <div class="slide slide-contact">
+            <div class="content">
+                <h2>Contact me</h2>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-label"><i class="fas fa-envelope"></i> Email</div>
+                        <div class="contact-value">Tranvanducanh08112008@gmail.com</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label"><i class="fas fa-phone"></i> Phone</div>
+                        <div class="contact-value">0328 043 732</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label"><i class="fab fa-discord"></i> Discord</div>
+                        <div class="contact-value">nium0811</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label"><i class="fas fa-map-marker-alt"></i> Location</div>
+                        <div class="contact-value">Ho Chi Minh City, Vietnam</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <button class="nav-button prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+    <button class="nav-button next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+
+    <!-- Slide Indicators -->
+    <div class="slide-indicators">
+        <div class="dot active" onclick="goToSlide(0)"></div>
+        <div class="dot" onclick="goToSlide(1)"></div>
+        <div class="dot" onclick="goToSlide(2)"></div>
+        <div class="dot" onclick="goToSlide(3)"></div>
+        <div class="dot" onclick="goToSlide(4)"></div>
+        <div class="dot" onclick="goToSlide(5)"></div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar"></div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const progressBar = document.querySelector('.progress-bar');
+        let autoSlideInterval;
+
+        // Auto slide every 8 seconds
+        const AUTO_SLIDE_TIME = 8000;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            slides[n].classList.add('active');
+            dots[n].classList.add('active');
+
+            // Reset and start progress bar
+            progressBar.style.animation = 'none';
+            setTimeout(() => {
+                progressBar.style.animation = `slideShow ${AUTO_SLIDE_TIME / 1000}s linear forwards`;
+            }, 10);
+
+            // Reset auto-slide timer   
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide >= slides.length) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+            showSlide(currentSlide);
+        }
+
+        function goToSlide(n) {
+            currentSlide = n;
+            showSlide(currentSlide);
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                changeSlide(1);
+            }, AUTO_SLIDE_TIME);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Mouse wheel navigation
+        document.addEventListener('wheel', (e) => {
+            if (e.deltaY > 0) changeSlide(1);
+            else changeSlide(-1);
+        }, { passive: true });
+
+        // Initialize
+        showSlide(0);
+    </script>
+
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.2,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.15,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "window",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": false,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // Create Twinkling Stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars-container');
+            const starCount = 100;
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 5 + 's';
+                star.style.opacity = Math.random();
+                starsContainer.appendChild(star);
+            }
+        }
+        createStars();
+    </script>
+
+</body>
+
+</html>
