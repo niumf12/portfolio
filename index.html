@@ -52,6 +52,30 @@
             -ms-user-select: none;
         }
 
+        /* PREMIUM TEXT GRADIENT: White -> Pale Cyan */
+        /* PREMIUM TEXT GRADIENT: White -> Pale Cyan (Animated) */
+        .text-gradient-silver-cyan {
+            /* High Contrast Loop: White -> Deep Cyan -> Bright Blue -> White */
+            background: linear-gradient(to right, #ffffff, #00f2ff, #0099cc, #ffffff);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            /* Stronger glow to match the cyan pop */
+            filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.5));
+            animation: textGradientFlow 3s linear infinite;
+        }
+
+        @keyframes textGradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
         @keyframes fadeInDown {
             from {
                 opacity: 0;
@@ -1813,7 +1837,7 @@
         <div class="slide slide-hero active">
             <div class="content">
                 <img src="redgirl.jpg" alt="Profile" class="hero-avatar">
-                <h1>Anh Tran</h1>
+                <h1 class="text-gradient-silver-cyan">Anh Tran</h1>
                 <p class="subtitle">Competitive Programmer | Informatics Specialist</p>
                 <div class="social-links">
                     <a href="https://www.facebook.com/ducanh.nium.811" class="social-btn" target="_blank"
@@ -1833,7 +1857,7 @@
         <!-- Slide 2: Stats -->
         <div class="slide slide-stats">
             <div class="content">
-                <h2>Academic Achievements</h2>
+                <h2 class="text-gradient-silver-cyan">Academic Achievements</h2>
                 <div class="stats-grid">
                     <div class="stat-item">
                         <div class="stat-number">1520</div>
@@ -1858,7 +1882,7 @@
         <!-- Slide 3: Skills -->
         <div class="slide slide-skills">
             <div class="content">
-                <h2>Technical Skills</h2>
+                <h2 class="text-gradient-silver-cyan">Technical Skills</h2>
                 <div class="skills-grid">
                     <div class="skill-card">
                         <div class="skill-icon"><i class="devicon-cplusplus-plain" style="color: #00599C;"></i></div>
@@ -1891,7 +1915,7 @@
         <!-- Slide 4: About -->
         <div class="slide slide-about">
             <div class="content">
-                <h2>About Me</h2>
+                <h2 class="text-gradient-silver-cyan">About Me</h2>
                 <div class="about-text">
                     <p>I am a Grade 12 student at Gia Dinh High School specializing in Informatics. With a strong
                         passion for competitive programming, I have participated in numerous national and international
@@ -1908,7 +1932,7 @@
         <!-- Slide 5: Achievements -->
         <div class="slide slide-achievements">
             <div class="content">
-                <h2>Honors & Awards</h2>
+                <h2 class="text-gradient-silver-cyan">Honors & Awards</h2>
                 <div class="timeline">
                     <!-- Item 1 -->
                     <div class="timeline-container left">
@@ -1965,7 +1989,7 @@
         <!-- Slide 6: Contact -->
         <div class="slide slide-contact">
             <div class="content">
-                <h2>Contact me</h2>
+                <h2 class="text-gradient-silver-cyan">Contact me</h2>
                 <div class="contact-grid">
                     <div class="contact-item">
                         <div class="contact-label"><i class="fas fa-envelope"></i> Email</div>
