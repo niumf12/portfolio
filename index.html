@@ -2225,6 +2225,28 @@
             }
         }
 
+        /* --- Scroll Navigation (Throttled) --- */
+        let isScrolling = false;
+        const scrollDelay = 200; // Fast response (was 800)
+
+        document.addEventListener('wheel', (e) => {
+            if (isScrolling) return;
+
+            // Threshold to avoid sensitive trackpad accidental scrolls
+            if (Math.abs(e.deltaY) < 20) return; // More sensitive (was 40)
+
+            if (e.deltaY > 0) {
+                changeSlide(1); // Scroll Down -> Next
+            } else {
+                changeSlide(-1); // Scroll Up -> Prev
+            }
+
+            isScrolling = true;
+            setTimeout(() => {
+                isScrolling = false;
+            }, scrollDelay);
+        }, { passive: true });
+
         /* --- Smooth Avatar Acceleration (WAAPI) --- */
         const avatar = document.querySelector('.hero-avatar');
         const ringInner = document.querySelector('.hero-ring-inner');
