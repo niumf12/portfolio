@@ -299,6 +299,8 @@
             max-width: 1000px;
             margin: 0 auto;
             min-height: 100vh;
+            padding-bottom: 60px;
+            /* Ensure background fills to bottom */
             /* Ensure it fills height so scroll works if needed */
         }
 
@@ -2244,13 +2246,15 @@
         document.addEventListener('wheel', (e) => {
             if (isScrolling) return;
 
-            // Threshold to avoid sensitive trackpad accidental scrolls
-            if (Math.abs(e.deltaY) < 20) return; // More sensitive (was 40)
+            // Threshold and strict horizontal detection to avoid conflict with vertical scrolling
+            // Only trigger if horizontal movement is dominant (2x larger than vertical)
+            if (Math.abs(e.deltaX) < 20) return;
+            if (Math.abs(e.deltaX) < Math.abs(e.deltaY) * 2) return; // Ensure primarily horizontal
 
-            if (e.deltaY > 0) {
-                changeSlide(1); // Scroll Down -> Next
+            if (e.deltaX > 0) {
+                changeSlide(1); // Scroll Right -> Next
             } else {
-                changeSlide(-1); // Scroll Up -> Prev
+                changeSlide(-1); // Scroll Left -> Prev
             }
 
             isScrolling = true;
