@@ -23,7 +23,7 @@
     <meta property="twitter:image" content="redgirl.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
     <style>
@@ -63,7 +63,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             /* Stronger glow to match the cyan pop */
-            filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.5));
+            filter: drop-shadow(0 0 5px rgba(0, 242, 255, 0.2));
             animation: textGradientFlow 3s linear infinite;
         }
 
@@ -326,7 +326,7 @@
             right: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 60%);
             animation: float 20s ease-in-out infinite;
         }
 
@@ -410,20 +410,23 @@
         }
 
         .slide-hero h1 {
-            font-size: 4rem;
-            font-weight: 700;
+            font-size: 3.5rem;
+            font-weight: 300;
+            /* Slimmer */
             color: #0099cc;
+            margin-bottom: 15px;
             margin-bottom: 15px;
             animation: fadeInDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
             letter-spacing: -2px;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
             font-stretch: condensed;
         }
 
         .slide-hero .subtitle {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: #0099cc;
-            font-weight: 700;
+            font-weight: 300;
+            /* Slimmer */
             margin-bottom: 50px;
             animation: fadeInDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
@@ -437,9 +440,49 @@
             animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
         }
 
+        .hero-quote {
+            font-family: 'Cormorant Garamond', serif;
+            /* Inherently thinner/elegant */
+            font-style: italic;
+            font-size: 1.2rem;
+            /* Increased size */
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0 auto 25px;
+            max-width: 650px;
+            animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s both;
+            opacity: 0.9;
+            font-weight: 300;
+            /* True Thin */
+            text-align: center;
+            position: relative;
+            line-height: 1.4;
+            display: flex;
+            /* Flexbox for perfect centering */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-quote span {
+            display: block;
+            margin-top: 3px;
+            font-family: inherit;
+            font-size: 1rem;
+            /* Increased size */
+            color: rgba(255, 255, 255, 0.5);
+            font-style: normal;
+            font-weight: 300;
+            /* True Thin */
+            text-transform: none;
+            letter-spacing: 0;
+            text-shadow: none;
+            text-align: center;
+            /* Explicit center */
+        }
+
         .social-btn {
-            width: 65px;
-            height: 65px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             background: rgba(42, 42, 42, 0.4);
             border: 2px solid #0099cc;
@@ -448,7 +491,7 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            font-size: 1.5rem;
+            font-size: 0.9rem;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             box-shadow: 0 10px 30px rgba(0, 153, 204, 0.1), 0 5px 15px rgba(0, 0, 0, 0.4);
             position: relative;
@@ -481,7 +524,7 @@
             right: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 60% 40%, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+            background: radial-gradient(circle at 60% 40%, rgba(59, 130, 246, 0.06) 0%, transparent 60%);
             animation: float 20s ease-in-out infinite;
         }
 
@@ -494,13 +537,13 @@
         }
 
         .slide-stats h2 {
-            font-size: 3rem;
-            font-weight: 700;
+            font-size: 2.5rem;
+            font-weight: 300;
             color: #0099cc;
             margin-bottom: 70px;
             text-align: center;
             animation: slideInLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
             letter-spacing: -1.5px;
             font-stretch: condensed;
         }
@@ -565,21 +608,23 @@
         }
 
         .stat-number {
-            font-size: 3.5rem;
-            font-weight: 700;
+            font-size: 3rem;
+            font-weight: 300;
+            /* Slimmer */
             color: #0099cc;
             margin-bottom: 15px;
             position: relative;
             z-index: 1;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
             letter-spacing: -1px;
             font-stretch: condensed;
         }
 
         .stat-label {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #0099cc;
-            font-weight: 700;
+            font-weight: 400;
+            /* Slimmer but readable */
             position: relative;
             z-index: 1;
             text-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
@@ -597,7 +642,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 40% 60%, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle at 40% 60%, rgba(59, 130, 246, 0.04) 0%, transparent 60%);
             animation: float 22s ease-in-out infinite;
         }
 
@@ -610,8 +655,8 @@
         }
 
         .slide-skills h2 {
-            font-size: 3rem;
-            font-weight: 700;
+            font-size: 2.5rem;
+            font-weight: 300;
             color: #0099cc;
             margin-bottom: 70px;
             text-align: center;
@@ -712,7 +757,8 @@
         }
 
         .skill-name {
-            font-weight: 800;
+            font-weight: 400;
+            /* Slimmer */
             color: #0099cc;
             font-size: 1.1rem;
             position: relative;
@@ -732,7 +778,7 @@
             right: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 70% 30%, rgba(59, 130, 246, 0.11) 0%, transparent 70%);
+            background: radial-gradient(circle at 70% 30%, rgba(59, 130, 246, 0.05) 0%, transparent 60%);
             animation: float 25s ease-in-out infinite;
         }
 
@@ -745,8 +791,8 @@
         }
 
         .slide-about h2 {
-            font-size: 3rem;
-            font-weight: 700;
+            font-size: 2.5rem;
+            font-weight: 300;
             color: #0099cc;
             margin-bottom: 50px;
             text-align: center;
@@ -762,7 +808,7 @@
             border-radius: 18px;
             border: 2px solid #0099cc;
             line-height: 1.9;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #0099cc;
             animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
             box-shadow: 0 8px 30px rgba(0, 153, 204, 0.1), 0 5px 15px rgba(0, 0, 0, 0.4);
@@ -771,7 +817,8 @@
 
         .about-text p {
             margin-bottom: 20px;
-            font-weight: 500;
+            font-weight: 300;
+            /* Lighter body text */
         }
 
         .about-text p:last-child {
@@ -790,7 +837,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 30% 70%, rgba(59, 130, 246, 0.09) 0%, transparent 70%);
+            background: radial-gradient(circle at 30% 70%, rgba(59, 130, 246, 0.04) 0%, transparent 60%);
             animation: float 23s ease-in-out infinite;
         }
 
@@ -803,8 +850,8 @@
         }
 
         .slide-achievements h2 {
-            font-size: 3rem;
-            font-weight: 700;
+            font-size: 2.5rem;
+            font-weight: 300;
             color: #0099cc;
             margin-bottom: 50px;
             text-align: center;
@@ -996,7 +1043,7 @@
             right: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 50% 40%, rgba(59, 130, 246, 0.13) 0%, transparent 70%);
+            background: radial-gradient(circle at 50% 40%, rgba(59, 130, 246, 0.06) 0%, transparent 60%);
             animation: float 24s ease-in-out infinite;
         }
 
@@ -1009,8 +1056,8 @@
         }
 
         .slide-contact h2 {
-            font-size: 3rem;
-            font-weight: 700;
+            font-size: 2.5rem;
+            font-weight: 300;
             color: #0099cc;
             margin-bottom: 50px;
             text-align: center;
@@ -1264,9 +1311,9 @@
             }
 
             .social-btn {
-                width: 75px;
-                height: 75px;
-                font-size: 1.8rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
             }
 
             .slide-stats h2,
@@ -1334,9 +1381,9 @@
             }
 
             .social-btn {
-                width: 60px;
-                height: 60px;
-                font-size: 1.3rem;
+                width: 38px;
+                height: 38px;
+                font-size: 0.95rem;
             }
 
             .slide-stats h2,
@@ -1391,9 +1438,9 @@
             }
 
             .social-btn {
-                width: 55px;
-                height: 55px;
-                font-size: 1.2rem;
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
                 gap: 12px;
             }
 
@@ -1530,9 +1577,9 @@
             }
 
             .social-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 1.1rem;
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
             }
 
             .slide-stats h2,
@@ -1689,9 +1736,9 @@
             }
 
             .social-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 1rem;
+                width: 32px;
+                height: 32px;
+                font-size: 0.85rem;
             }
 
             .slide-stats h2,
@@ -1850,9 +1897,9 @@
             }
 
             .social-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 0.9rem;
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
             }
 
             .slide-stats h2,
@@ -1906,8 +1953,12 @@
                     <div class="hero-ring hero-ring-outer"></div>
                     <img src="redgirl.jpg" alt="Profile">
                 </div>
-                <h1 class="text-gradient-silver-cyan">Anh Tran</h1>
+                <h1 class="text-gradient-silver-cyan">Nium</h1>
                 <p class="subtitle">Competitive Programmer | Informatics Specialist</p>
+                <div class="hero-quote">
+                    What other people think of me is none of my business
+                    <span>RuPaul</span>
+                </div>
                 <div class="social-links">
                     <a href="https://www.facebook.com/ducanh.nium.811" class="social-btn" target="_blank"
                         title="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -2003,52 +2054,58 @@
             <div class="content">
                 <h2 class="text-gradient-silver-cyan">Honors & Awards</h2>
                 <div class="timeline">
-                    <!-- Item 1 -->
+                    <!-- 2025 -->
                     <div class="timeline-container left">
                         <div class="timeline-content">
                             <span class="achievement-year">2025</span>
-                            <div class="achievement-title">Gold Medal - 30/4 Olympiad</div>
-                            <div class="achievement-desc">Grade 11 in Ho Chi Minh City</div>
+                            <div class="achievement-title">Gold Medal</div>
+                            <div class="achievement-desc">30/4 Traditional Olympiad</div>
                         </div>
                     </div>
-                    <!-- Item 2 -->
                     <div class="timeline-container right">
                         <div class="timeline-content">
-                            <span class="achievement-year">2024</span>
-                            <div class="achievement-title">Second Prize - ICPC Asia Hanoi</div>
-                            <div class="achievement-desc">ICPC Asia Hanoi Regional (High School)</div>
+                            <span class="achievement-year">2025</span>
+                            <div class="achievement-title">Consolation Prize</div>
+                            <div class="achievement-desc">Vietnamese Olympiad in Informatics</div>
                         </div>
                     </div>
-                    <!-- Item 3 -->
+
+                    <!-- 2024 -->
                     <div class="timeline-container left">
                         <div class="timeline-content">
                             <span class="achievement-year">2024</span>
-                            <div class="achievement-title">Gold Medal - 30/4 Olympiad</div>
-                            <div class="achievement-desc">Grade 10 in Ba Ria - Vung Tau</div>
+                            <div class="achievement-title">Second Prize</div>
+                            <div class="achievement-desc">ICPC Asia Hanoi Regional Contest</div>
                         </div>
                     </div>
-                    <!-- Item 4 -->
                     <div class="timeline-container right">
                         <div class="timeline-content">
                             <span class="achievement-year">2024</span>
-                            <div class="achievement-title">First Prize - Summer Camp</div>
-                            <div class="achievement-desc">Informatics Summer Camp in Ninh Thuan</div>
+                            <div class="achievement-title">Consolation Prize</div>
+                            <div class="achievement-desc">ICPC Vietnam National Programming Contest</div>
                         </div>
                     </div>
-                    <!-- Item 5 -->
                     <div class="timeline-container left">
                         <div class="timeline-content">
                             <span class="achievement-year">2024</span>
-                            <div class="achievement-title">Top 5 - HCMC Selection</div>
-                            <div class="achievement-desc">National Gifted Student Team Selection</div>
+                            <div class="achievement-title">First Prize</div>
+                            <div class="achievement-desc">Central Informatics Summer Camp</div>
                         </div>
                     </div>
-                    <!-- Item 6 -->
                     <div class="timeline-container right">
+                        <div class="timeline-content">
+                            <span class="achievement-year">2024</span>
+                            <div class="achievement-title">Gold Medal</div>
+                            <div class="achievement-desc">30/4 Traditional Olympiad</div>
+                        </div>
+                    </div>
+
+                    <!-- 2023 -->
+                    <div class="timeline-container left">
                         <div class="timeline-content">
                             <span class="achievement-year">2023</span>
-                            <div class="achievement-title">Top 1 - District Competition</div>
-                            <div class="achievement-desc">Go Vap District Gifted Student Team</div>
+                            <div class="achievement-title">Second Prize</div>
+                            <div class="achievement-desc">City Excellent Student for Grade 9</div>
                         </div>
                     </div>
                 </div>
@@ -2296,10 +2353,10 @@
                 "events": {
                     "onhover": {
                         "enable": true,
-                        "mode": "grab"
+                        "mode": "grab" /* Fun interaction: particles flee cursor */
                     },
                     "onclick": {
-                        "enable": false,
+                        "enable": false, /* Click to add more stars */
                         "mode": "push"
                     },
                     "resize": true
