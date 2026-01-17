@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="nium-logo.png">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nium-portfolio.vercel.app/">
@@ -1285,33 +1285,6 @@
             box-shadow: 0 0 10px rgba(0, 153, 204, 0.4);
         }
 
-        /* Portfolio Logo */
-        .portfolio-logo {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 102;
-            cursor: pointer;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            opacity: 0.95;
-        }
-
-        .portfolio-logo img {
-            height: 40px;
-            width: auto;
-            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
-            transition: filter 0.3s ease;
-        }
-
-        .portfolio-logo:hover {
-            transform: scale(1.05);
-            opacity: 1;
-        }
-
-        .portfolio-logo:hover img {
-            filter: drop-shadow(0 4px 12px rgba(66, 133, 244, 0.4));
-        }
-
         /* Progress Bar */
         .progress-bar {
             position: fixed;
@@ -1326,10 +1299,6 @@
 
         /* Responsive Design - Extra Large Screens (1440px+) */
         @media (min-width: 1440px) {
-            .portfolio-logo img {
-                height: 50px;
-            }
-
             .slide-hero h1 {
                 font-size: 5rem;
             }
@@ -1590,15 +1559,6 @@
 
         /* Responsive Design - Small Tablets & Large Mobile (481px - 768px) */
         @media (max-width: 768px) and (min-width: 481px) {
-            .portfolio-logo {
-                top: 15px;
-                left: 15px;
-            }
-
-            .portfolio-logo img {
-                height: 32px;
-            }
-
             .slide-hero h1 {
                 font-size: 2.5rem;
                 margin-bottom: 12px;
@@ -1753,15 +1713,6 @@
 
         /* Responsive Design - Mobile (320px - 480px) */
         @media (max-width: 480px) {
-            .portfolio-logo {
-                top: 12px;
-                left: 12px;
-            }
-
-            .portfolio-logo img {
-                height: 26px;
-            }
-
             .slide {
                 padding: 20px;
             }
@@ -2004,11 +1955,6 @@
 </head>
 
 <body>
-    <!-- Portfolio Logo -->
-    <div class="portfolio-logo" onclick="goToSlide(0)">
-        <img src="nium-logo.png" alt="Nium Portfolio">
-    </div>
-
     <div id="stars-container"></div>
     <div id="particles-js"></div>
 
