@@ -1434,7 +1434,6 @@
             .hero-avatar {
                 width: 160px;
                 height: 160px;
-                border: 4px solid #0099cc;
             }
 
             .social-btn {
@@ -1493,26 +1492,29 @@
                 font-size: 1rem;
             }
 
-            .achievements-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+            /* Timeline Responsive - Tablet */
+            .timeline::after {
+                left: 31px;
             }
 
-            .achievement-card {
-                padding: 25px;
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
             }
 
-            .achievement-year {
-                font-size: 0.8rem;
-                padding: 6px 12px;
+            .timeline-container.left,
+            .timeline-container.right {
+                left: 0;
             }
 
-            .achievement-title {
-                font-size: 1.1rem;
+            .timeline-container.left::after,
+            .timeline-container.right::after {
+                left: 21px;
             }
 
-            .achievement-desc {
-                font-size: 0.85rem;
+            .right::after {
+                left: 21px;
             }
 
             .contact-grid {
@@ -1568,7 +1570,6 @@
             .hero-avatar {
                 width: 140px;
                 height: 140px;
-                border: 4px solid #0099cc;
                 margin-bottom: 30px;
             }
 
@@ -1637,28 +1638,32 @@
                 margin-bottom: 15px;
             }
 
-            .achievements-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
+            /* Timeline Responsive - Small Tablet */
+            .timeline::after {
+                left: 31px;
             }
 
-            .achievement-card {
-                padding: 20px;
-                border-left: 4px solid #0099cc;
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
             }
 
-            .achievement-year {
-                font-size: 0.75rem;
-                padding: 5px 10px;
-                margin-bottom: 8px;
+            .timeline-container.left,
+            .timeline-container.right {
+                left: 0;
             }
 
-            .achievement-title {
-                font-size: 1rem;
-                margin-bottom: 8px;
+            .timeline-container.left::after,
+            .timeline-container.right::after {
+                left: 21px;
             }
 
-            .achievement-desc {
+            .hero-quote {
+                font-size: 1.2rem;
+            }
+
+            .hero-quote span {
                 font-size: 0.8rem;
             }
 
@@ -1727,7 +1732,6 @@
             .hero-avatar {
                 width: 120px;
                 height: 120px;
-                border: 3px solid #0099cc;
                 margin-bottom: 25px;
             }
 
@@ -1806,30 +1810,38 @@
                 margin-bottom: 0;
             }
 
-            .achievements-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
+            /* Timeline Responsive - Mobile */
+            .timeline::after {
+                left: 20px;
             }
 
-            .achievement-card {
-                padding: 15px;
-                border-left: 3px solid #0099cc;
-                border-radius: 10px;
+            .timeline-container {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 15px;
             }
 
-            .achievement-year {
+            .timeline-container.left::after,
+            .timeline-container.right::after {
+                left: 10px;
+                width: 20px;
+                height: 20px;
+            }
+
+            .hero-quote {
+                font-size: 1rem;
+            }
+
+            .hero-quote span {
                 font-size: 0.7rem;
-                padding: 4px 8px;
-                margin-bottom: 6px;
             }
 
             .achievement-title {
-                font-size: 0.9rem;
-                margin-bottom: 6px;
+                font-size: 1rem;
             }
 
             .achievement-desc {
-                font-size: 0.75rem;
+                font-size: 0.85rem;
             }
 
             .contact-grid {
